@@ -3,6 +3,8 @@ import { Card, Form, Input, Button } from 'antd'
 import { KeyOutlined, MailOutlined } from '@ant-design/icons';
 import $ from 'jquery';
 
+import { FormToken } from '../../utils/constants';
+
 import './login.scss'
 
 export default function Login(props){
@@ -20,22 +22,26 @@ export default function Login(props){
     const inputOnChange = event => {
         let target = event.target
         setData({
+            ...data, 
             [target.name]: target.value
         })
     }
 
     const submit = () => {
+        
+
         $.ajax({
             url: '/users/sign_in',
             method: 'POST',
-            data: {user: data},
+            data: {user: data, authenticity_token: FormToken},
             success: () => {
                 console.log('ok')
             },
-            error: () => {
-                console.error('error')
+            error: (response) => {
+                console.error(response)
             }
         })
+
     }
 
     return(
@@ -49,7 +55,6 @@ export default function Login(props){
             >
                 <Form.Item 
                     type="email"
-                    name="email"
                     rule={[{
                         required: true,
                         message: 'Enter your email.'
@@ -66,7 +71,6 @@ export default function Login(props){
                 
                 <Form.Item
                     type="password"
-                    name="password"
                     rule={[{
                         required: true,
                         message: 'Enter your password'
@@ -77,6 +81,7 @@ export default function Login(props){
                         className="site-form-item-icon" />} 
                         placeholder="Enter your password."
                         onChange={e => inputOnChange(e)} 
+                        name="password"
                     />
                 </Form.Item>
 
