@@ -4,6 +4,7 @@ import { KeyOutlined, MailOutlined } from '@ant-design/icons';
 import $ from 'jquery';
 
 import { FormToken } from '../../utils/constants';
+import { Toast } from '../../utils/constants';
 
 import './login.scss'
 
@@ -31,14 +32,19 @@ export default function Login(props){
         
 
         $.ajax({
-            url: '/users/sign_in',
+            url: '/users/sign_in.json',
             method: 'POST',
             data: {user: data, authenticity_token: FormToken},
-            success: () => {
-                console.log('ok')
+            success: (response) => {
+                window.location.href = window.location.href;
+                
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Signed in successfully'
+                  })
             },
             error: (response) => {
-                console.error(response)
+                console.error(response)               
             }
         })
 

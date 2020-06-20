@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, Form, Input, Button } from 'antd'
 import { KeyOutlined, MailOutlined } from '@ant-design/icons';
 import $ from 'jquery';
+import Swal from 'sweetalert2';
 
 // constants 
 import { FormToken } from '../../utils/constants'; 
@@ -31,10 +32,11 @@ export default function Login(props){
 
     const submit = () => {
         $.ajax({
-            url: '/users',
+            url: '/users.json',
             method: 'POST',
             data: {user: data, authenticity_token: FormToken},
             success: () => {
+                
                 console.log('ok')
             },
             error: () => {
