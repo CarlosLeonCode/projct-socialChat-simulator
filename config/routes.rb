@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   } 
 
   authenticated :user do  
-    root 'main#dashboard', as: :user_root
+    root 'dashboard#index', as: :user_root
   end 
 
 
