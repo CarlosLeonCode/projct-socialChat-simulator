@@ -1,0 +1,11 @@
+.posts_wrapper{
+    height: 27rem;
+    background-color: #ccc;
+    border-radius: 5px 5px 0 0;
+
+    .layout{
+        padding: 1rem;
+        height: 100%;
+        overflow-y: auto;
+    }
+}
