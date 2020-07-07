@@ -20,7 +20,7 @@ export default function PostForm(props){
             url: '/posts',
             method: 'POST',
             data: { post: post, authenticity_token: FormToken },
-            success: () => {
+            success: (response) => {                
                 get_posts()
             },
             error: () => {
